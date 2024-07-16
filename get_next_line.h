@@ -6,7 +6,7 @@
 /*   By: afuentes < afuentes@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:49:27 by afuentes          #+#    #+#             */
-/*   Updated: 2024/07/12 13:21:01 by afuentes         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:47:57 by afuentes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 10
 # endif
 
 # include <stdlib.h>

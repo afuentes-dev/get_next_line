@@ -6,7 +6,7 @@
 /*   By: afuentes < afuentes@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:34 by afuentes          #+#    #+#             */
-/*   Updated: 2024/03/18 22:18:57 by afuentes         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:11:11 by afuentes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_next(char *buff)
 		return (0);
 	}
 	line = ft_calloc((ft_strlen(buff) - i + 1), sizeof(char));
+	if (!line)
+		return (0);
 	i++;
 	j = 0;
 	while (buff[i])
@@ -54,7 +56,9 @@ char	*ft_line(char *buff)
 		return (0);
 	while (buff[i] && buff[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = ft_calloc((i + 2), sizeof(char));
+	if (!line)
+		return (0);
 	i = 0;
 	while (buff[i] && buff[i] != '\n')
 	{
@@ -71,9 +75,9 @@ char	*get_read_file(int fd, char *res)
 	char	*buff;
 	int		byte;
 
-	if (!res)
-		res = ft_calloc(1, 1);
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
+		return (0);
 	byte = 1;
 	while (byte > 0)
 	{
@@ -81,8 +85,6 @@ char	*get_read_file(int fd, char *res)
 		if (byte == -1)
 		{
 			free(buff);
-			free(res);
-			res = 0;
 			return (0);
 		}
 		buff[byte] = 0;
@@ -99,11 +101,17 @@ char	*get_next_line(int fd)
 	static char	*buff;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buff, BUFFER_SIZE) < 0)
 	{
 		free(buff);
 		buff = 0;
 		return (0);
+	}
+	if (!buff)
+	{
+		buff = ft_calloc(1, 1);
+		if (!buff)
+			return (0);
 	}
 	buff = get_read_file(fd, buff);
 	if (!buff)

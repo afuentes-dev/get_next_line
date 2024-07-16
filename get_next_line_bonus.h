@@ -6,7 +6,7 @@
 /*   By: afuentes < afuentes@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:49:27 by afuentes          #+#    #+#             */
-/*   Updated: 2024/07/12 13:32:50 by afuentes         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:48:03 by afuentes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 10
 # endif
 
 # ifndef OPEN_MAX
