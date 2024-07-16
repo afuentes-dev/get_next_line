@@ -111,15 +111,13 @@ char	*get_next_line(int fd)
 	{
 		buff = ft_calloc(1, 1);
 		if (!buff)
+		{
+			free(buff);
+			buff = 0;
 			return (0);
+		}
 	}
 	buff = get_read_file(fd, buff);
-	if (!buff)
-	{
-		free(buff);
-		buff = 0;
-		return (0);
-	}
 	line = ft_line(buff);
 	buff = ft_next(buff);
 	return (line);
